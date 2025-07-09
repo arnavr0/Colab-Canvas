@@ -1,0 +1,121 @@
+/* frontend/src/Whiteboard.css */
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.toolbar button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.toolbar button:hover {
+    background-color: #e0e0e0;
+}
+
+.toolbar button.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.toolbar label {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.toolbar input[type="color"] {
+    width: 40px;
+    height: 40px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.toolbar input[type="range"] {
+    cursor: pointer;
+}
+
+.toolbar .clear-btn {
+    margin-left: auto; /* Pushes the clear button to the far right */
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.toolbar .clear-btn:hover {
+    background-color: #c82333;
+}
+
+canvas {
+    border: 2px solid #333;
+    border-radius: 8px;
+    cursor: crosshair;
+}
+
+/* Add these new styles to your existing Whiteboard.css */
+
+.canvas-container {
+    position: relative; /* Crucial for positioning overlays */
+    display: inline-block; /* Keeps it tight around the canvas */
+}
+
+/* --- Color Picker Styles --- */
+.color-picker-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+}
+
+.color-swatch {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+    cursor: pointer;
+}
+
+.color-picker-popover {
+    position: absolute;
+    z-index: 2;
+    top: 45px; /* Position it below the swatch */
+    left: 0;
+}
+
+.color-picker-cover {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+
+/* --- Text Editor Styles --- */
+.text-editor {
+    position: absolute; /* Positions it over the canvas */
+    border: 1px dotted #333;
+}
+
+.text-editor textarea {
+    background: rgba(255, 255, 255, 0.85);
+    outline: none;
+    border: none;
+    padding: 5px;
+    box-sizing: border-box;
+    resize: both; /* Allows user to resize the textarea! */
+    font-family: sans-serif;
+    line-height: 1.2;
+}
