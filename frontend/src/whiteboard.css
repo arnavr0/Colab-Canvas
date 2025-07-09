@@ -1,5 +1,6 @@
 /* frontend/src/Whiteboard.css */
 
+/* Toolbar Styles */
 .toolbar {
     display: flex;
     align-items: center;
@@ -35,21 +36,12 @@
     margin-left: 10px;
 }
 
-.toolbar input[type="color"] {
-    width: 40px;
-    height: 40px;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    background-color: transparent;
-}
-
 .toolbar input[type="range"] {
     cursor: pointer;
 }
 
 .toolbar .clear-btn {
-    margin-left: auto; /* Pushes the clear button to the far right */
+    margin-left: auto;
     background-color: #dc3545;
     color: white;
     border-color: #dc3545;
@@ -59,20 +51,21 @@
     background-color: #c82333;
 }
 
+/* Canvas Styles */
+.canvas-container {
+    position: relative;
+    display: inline-block;
+}
+
 canvas {
     border: 2px solid #333;
     border-radius: 8px;
     cursor: crosshair;
+    background-color: #ffffff;
+    width: 100%;
 }
 
-/* Add these new styles to your existing Whiteboard.css */
-
-.canvas-container {
-    position: relative; /* Crucial for positioning overlays */
-    display: inline-block; /* Keeps it tight around the canvas */
-}
-
-/* --- Color Picker Styles --- */
+/* Color Picker Styles */
 .color-picker-container {
     display: flex;
     align-items: center;
@@ -86,12 +79,13 @@ canvas {
     border-radius: 4px;
     border: 2px solid #ccc;
     cursor: pointer;
+    box-shadow: 0 0 3px rgba(0,0,0,0.3);
 }
 
 .color-picker-popover {
     position: absolute;
-    z-index: 2;
-    top: 45px; /* Position it below the swatch */
+    z-index: 20;
+    top: 45px;
     left: 0;
 }
 
@@ -103,19 +97,25 @@ canvas {
     left: 0px;
 }
 
-/* --- Text Editor Styles --- */
-.text-editor {
-    position: absolute; /* Positions it over the canvas */
-    border: 1px dotted #333;
+/* Active tool indicator */
+.toolbar .active {
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
-.text-editor textarea {
-    background: rgba(255, 255, 255, 0.85);
-    outline: none;
-    border: none;
-    padding: 5px;
-    box-sizing: border-box;
-    resize: both; /* Allows user to resize the textarea! */
-    font-family: sans-serif;
-    line-height: 1.2;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .toolbar {
+        gap: 6px;
+        padding: 8px;
+    }
+    
+    .toolbar button {
+        padding: 6px 8px;
+        font-size: 14px;
+    }
+    
+    .color-swatch {
+        width: 30px;
+        height: 30px;
+    }
 }

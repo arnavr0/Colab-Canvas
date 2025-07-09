@@ -1,42 +1,245 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* === Global Styles & Font === */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #f7f9fc;
+  color: #2c3e50;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === Main App Layout === */
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Layout for when the whiteboard is active */
+.App.whiteboard-view {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+
+/* === Landing Page (Join/Create) Styles === */
+.join-container {
+  background: #ffffff;
+  padding: 40px 50px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 450px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.join-container h1 {
+  margin: 0;
+  font-size: 2.2em;
+  font-weight: 600;
+  color: #34495e;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.create-room-section .create-btn {
+  width: 100%;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  font-weight: 500;
+  background: linear-gradient(45deg, #3498db, #2980b9);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.create-room-section .create-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(52, 152, 219, 0.5);
 }
 
-.card {
-  padding: 2em;
+.divider {
+  font-weight: 500;
+  color: #bdc3c7;
+  position: relative;
+}
+/* Creates the lines next to "OR" */
+.divider::before, .divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 35%;
+  height: 1px;
+  background-color: #ecf0f1;
+}
+.divider::before { left: 0; }
+.divider::after { right: 0; }
+
+
+.join-room-section {
+  display: flex;
+  gap: 10px;
 }
 
-.read-the-docs {
-  color: #888;
+.join-room-section input {
+  flex-grow: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid #ecf0f1;
+  font-size: 1.1em;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 2px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.join-room-section input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.join-room-section button {
+  padding: 12px 20px;
+  font-size: 1em;
+  font-weight: 500;
+  background-color: #95a5a6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.join-room-section button:hover {
+  background-color: #7f8c8d;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+/* === Whiteboard View Styles === */
+.whiteboard-view h2 {
+  text-align: center;
+  color: #34495e;
+  margin: 0 0 10px 0;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+}
+
+.toolbar button {
+  padding: 8px 15px;
+  border: 2px solid transparent;
+  background-color: #ecf0f1;
+  color: #7f8c8d;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.toolbar button:hover {
+  background-color: #e0e6e8;
+  color: #34495e;
+}
+
+.toolbar button.active {
+  background-color: #3498db;
+  color: white;
+  box-shadow: 0 2px 5px rgba(52, 152, 219, 0.4);
+}
+
+.toolbar label {
+  font-weight: 500;
+  color: #34495e;
+  margin-left: 10px;
+}
+
+.toolbar input[type="range"] {
+  cursor: pointer;
+}
+
+.toolbar .clear-btn {
+  margin-left: auto;
+  background-color: #e74c3c;
+  color: white;
+}
+.toolbar .clear-btn:hover {
+  background-color: #c0392b;
+}
+
+.canvas-container {
+  flex-grow: 1; /* Makes the canvas take up remaining space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  cursor: crosshair;
+}
+
+
+/* === Color Picker Styles === */
+.color-picker-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.color-swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 2px solid #ecf0f1;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.color-swatch:hover {
+  transform: scale(1.1);
+}
+
+.color-picker-popover {
+  position: absolute;
+  z-index: 20;
+  top: 45px;
+  left: 0;
+}
+
+.color-picker-cover {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
 }
