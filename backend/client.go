@@ -9,9 +9,10 @@ import (
 
 // Client represents a single user connection.
 type Client struct {
-	conn *websocket.Conn
-	send chan []byte
-	room *Room
+	conn     *websocket.Conn
+	send     chan []byte
+	room     *Room
+	Username string
 }
 
 // readPump pumps messages from the websocket connection to the room's broadcast channel.
@@ -28,7 +29,7 @@ func (c *Client) readPump() {
 			}
 			break
 		}
-		// The message is then sent to the room's broadcast channel.
+		// The message is sent to the room's broadcast channel to be processed.
 		c.room.broadcast <- message
 	}
 }
